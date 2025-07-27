@@ -1,0 +1,239 @@
+/* New Professional Pip-Boy Color Palette */
+:root {
+    --main-bg-color: #1A202C; /* Very dark blue-grey for body background */
+    --container-bg-color: #2D3748; /* Darker grey-blue for pip-boy container */
+    --screen-bg-color: #0A101A; /* Deep blue-black for screen background */
+    --accent-color: #007bff; /* Primary KapitalBank blue */
+    --bright-glow-color: #00BFFF; /* Brighter blue for screen borders/shadows */
+    --text-color: #E0E6ED; /* Soft off-white for primary text */
+    --button-bg-color: #2D3748; /* Dark grey-blue for buttons */
+    --button-hover-bg-color: #007bff; /* Primary blue on button hover */
+    --button-text-color: #E0E6ED; /* Light text on buttons */
+    --calendar-header-bg: #004499; /* Slightly darker blue for calendar header */
+    --calendar-day-number-color: #A0AEC0; /* Muted grey for day numbers */
+    --calendar-border-color: #4A5568; /* Darker border for calendar cells */
+    --event-bg-color: #007bff; /* Primary blue for event background */
+    --event-border-color: #00BFFF; /* Bright blue for event border */
+    --event-text-color: #87CEFA; /* LIGHTER BLUE/CYAN FOR EVENT TEXT - More compatible with blue theme */
+}
+
+/* Preserve VT323 font as requested for the retro tech feel */
+@import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
+body {
+    font-family: 'VT323', monospace;
+    background: var(--main-bg-color); /* Updated background color */
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: 100vh;
+    color: var(--text-color); /* Default text color */
+}
+
+.pip-boy-container {
+    background: var(--container-bg-color); /* Updated container background */
+    border: 5px solid var(--accent-color); /* Updated border color */
+    border-radius: 20px;
+    padding: 20px;
+    box-shadow: inset 0 0 15px var(--accent-color), 0 0 20px rgba(0, 123, 255, 0.3); /* Updated shadow color */
+    width: 90%;
+    max-width: 1000px;
+    box-sizing: border-box; /* Include padding in width */
+}
+
+.screen {
+    background: var(--screen-bg-color); /* Updated screen background */
+    border: 3px solid var(--bright-glow-color); /* Updated screen border */
+    border-radius: 10px;
+    padding: 30px;
+    position: relative;
+    overflow: hidden;
+    animation: scanlines 4s infinite linear; /* Preserve scanlines */
+}
+
+/* Scanlines Animation - Updated color for subtle blue tint */
+@keyframes scanlines {
+    0% { background-position: 0 0; }
+    100% { background-position: 0 100%; }
+}
+
+.screen::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(transparent 50%, rgba(0, 191, 255, 0.05) 50%); /* Subtle blue scanlines */
+    background-size: 100% 4px;
+    pointer-events: none;
+    animation: scanlines 0.5s infinite linear;
+}
+
+h1 {
+    font-size: 3.5em;
+    color: var(--bright-glow-color); /* Updated heading color */
+    text-shadow: none; /* Removed text-shadow to eliminate blurring */
+    margin-bottom: 20px;
+}
+
+.flicker {
+    /* This class is used for the flickering animation.
+       It will be removed from specific elements in HTML to disable the effect. */
+    animation: flicker 2s infinite; /* Preserve flicker animation definition */
+}
+
+/* Flicker Animation - Remains the same, affects opacity */
+@keyframes flicker {
+    0%, 19%, 21%, 23%, 25%, 54%, 56%, 100% { opacity: 1; }
+    20%, 24%, 55% { opacity: 0.7; }
+}
+
+.support-person {
+    font-size: 2.2em;
+    color: var(--text-color); /* Updated text color */
+    background: var(--container-bg-color); /* Updated background */
+    padding: 15px;
+    border: 2px dashed var(--accent-color); /* Updated border */
+    margin-bottom: 30px;
+    text-align: center;
+}
+
+.pip-boy-button {
+    display: inline-block;
+    padding: 15px 25px;
+    background: var(--button-bg-color); /* Updated button background */
+    color: var(--button-text-color); /* Updated button text color */
+    text-decoration: none;
+    border: 2px solid var(--accent-color); /* Updated button border */
+    border-radius: 50px; /* Preserve rounded button */
+    font-size: 1.5em;
+    transition: all 0.3s;
+    box-shadow: 0 0 5px var(--accent-color); /* Updated shadow */
+}
+
+.pip-boy-button:hover {
+    background: var(--button-hover-bg-color); /* Updated hover background */
+    color: var(--white); /* White text on hover for contrast */
+    box-shadow: 0 0 15px var(--bright-glow-color); /* Updated hover shadow */
+}
+
+.back-button {
+    margin-top: 20px;
+}
+
+/* Calendar Styles - Updated to new color scheme */
+#calendar {
+    background: transparent;
+    color: var(--text-color);
+}
+
+.fc-toolbar-title {
+    font-size: 2.5em;
+    color: var(--bright-glow-color); /* Updated title color */
+    text-shadow: none; /* Removed text-shadow to eliminate blurring */
+    /* Removed animation: flicker 3s infinite; to remove blurring effect */
+}
+
+.fc-button {
+    background: var(--button-bg-color) !important; /* Updated button background */
+    color: var(--button-text-color) !important; /* Updated button text color */
+    border: 2px solid var(--accent-color) !important; /* Updated border */
+    border-radius: 50%; /* Preserve rounded button */
+    width: 50px;
+    height: 50px;
+    line-height: 50px;
+    text-align: center;
+    padding: 0;
+    font-size: 1.8em;
+    box-shadow: 0 0 5px var(--accent-color); /* Updated shadow */
+    transition: all 0.3s;
+}
+
+.fc-button:hover {
+    background: var(--button-hover-bg-color) !important; /* Updated hover background */
+    color: var(--white) !important; /* White text on hover */
+    box-shadow: 0 0 15px var(--bright-glow-color) !important; /* Updated hover shadow */
+}
+
+.fc-daygrid-day-number {
+    color: var(--calendar-day-number-color); /* Muted color for day numbers */
+    font-size: 1.2em;
+}
+
+.fc-col-header-cell {
+    background: var(--calendar-header-bg); /* Darker blue for header cells */
+    color: var(--text-color); /* Light text on header */
+    border: 1px solid var(--calendar-border-color); /* Subtle border */
+}
+
+.fc-event {
+    background: var(--event-bg-color); /* Primary blue for events */
+    border: 2px solid var(--event-border-color); /* Bright blue border for events */
+    color: var(--event-text-color) !important; /* Now uses the lighter blue/cyan for better visibility */
+    font-size: 1.1em;
+    padding: 5px;
+}
+
+/* Terminal-style modal - Updated to new color scheme */
+.terminal-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(0, 0, 0, 0.8); /* Dark overlay */
+    z-index: 1000;
+}
+
+.modal-content {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background: var(--screen-bg-color); /* Same as screen background */
+    border: 3px solid var(--bright-glow-color); /* Same as screen border */
+    padding: 20px;
+    width: 80%;
+    max-width: 500px;
+    box-shadow: 0 0 20px var(--bright-glow-color); /* Updated shadow */
+    color: var(--text-color); /* Updated text color */
+    text-align: center;
+}
+
+/* Responsive adjustments (from previous design, still relevant) */
+@media (max-width: 768px) {
+    .pip-boy-container {
+        padding: 10px;
+    }
+    .screen {
+        padding: 20px;
+    }
+    h1 {
+        font-size: 2.5em;
+    }
+    .support-person {
+        font-size: 1.8em;
+        padding: 10px;
+    }
+    .pip-boy-button {
+        padding: 10px 20px;
+        font-size: 1.2em;
+    }
+    .fc-toolbar-title {
+        font-size: 1.8em !important;
+    }
+    .fc-button {
+        width: 40px;
+        height: 40px;
+        line-height: 40px;
+        font-size: 1.5em;
+    }
+    .modal-content {
+        padding: 15px;
+        width: 90%;
+    }
+}
