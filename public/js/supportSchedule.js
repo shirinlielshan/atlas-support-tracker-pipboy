@@ -1,4 +1,4 @@
-const team = ['Parvin Etibarli', 'Omar Bashirzada', 'Elshan Shirinli', 'Abulfat Nasirli', 'Akhmed Sadigov', 'Elgun Mahmudov', 'Ravan Hasanzada'];
+const team = ['Omar Bashirzada', 'Elshan Shirinli', 'Abulfat Nasirli', 'Akhmed Sadigov', 'Elgun Mahmudov', 'Ravan Hasanzada'];
 
 function getSupporterForDate(date) {
   const startDate = new Date('2025-07-28'); // Monday, July 28, 2025, with Parvin Etibarli
@@ -27,8 +27,10 @@ function getSupporterForDate(date) {
     current.setDate(current.getDate() + 1);
   }
 
-  const index = weekdayCount % 7; // Index 0 for July 28, increases with each weekday
-  return team[index];
+  // Use team.length so rotation adapts to removed/added members
+  if (!Array.isArray(team) || team.length === 0) return 'Unassigned';
+  const index = weekdayCount % team.length; // Index 0 for July 28, increases with each weekday
+  return team[index] || 'Unassigned';
 }
 
 function getSupportScheduleForMonth(year, month) {
